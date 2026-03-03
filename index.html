@@ -260,6 +260,27 @@
       height: 20px;
       cursor: pointer;
     }
+
+    /* Series list for works overview */
+    .series-list {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 1rem auto;
+      text-align: center;
+    }
+    .series-list li {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .series-list a {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .series-list a:hover {
+      text-decoration: underline;
+    }
     @media (max-width: 768px) {
       nav ul {
         flex-direction: column;
@@ -287,33 +308,14 @@
   <main class="container">
     <!-- Works Section -->
     <section id="works">
-      <h2>作品</h2>
-      <div class="filters">
-        <button data-filter="all" class="active">全部</button>
-        <button data-filter="portrait">人像</button>
-        <button data-filter="landscape">风景</button>
-        <button data-filter="street">街拍</button>
-        <!-- 新增冰岛系列筛选按钮 -->
-        <button data-filter="iceland">冰岛系列</button>
-      </div>
-      <div class="grid">
-        <div class="item" data-category="portrait">
-          <img src="01.jpg" alt="portrait 1">
-        </div>
-        <div class="item" data-category="landscape">
-          <img src="02.jpg" alt="landscape 1">
-        </div>
-        <div class="item" data-category="street">
-          <img src="03.jpg" alt="street 1">
-        </div>
-        <div class="item" data-category="portrait">
-          <img src="04.jpg" alt="portrait 2">
-        </div>
-        <!-- 新增冰岛系列作品 -->
-        <div class="item" data-category="iceland">
-          <img src="05.jpg" alt="冰岛 1">
-        </div>
-      </div>
+      <h2>作品集</h2>
+      <p>选择一个系列查看详细作品：</p>
+      <ul class="series-list">
+        <li><a href="iceland.html">冰岛系列</a></li>
+        <li><a href="#">人像系列（待更新）</a></li>
+        <li><a href="#">风景系列（待更新）</a></li>
+        <li><a href="#">街拍系列（待更新）</a></li>
+      </ul>
     </section>
 
     <!-- Projects Section -->
