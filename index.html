@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>你的名字 · 摄影作品集</title>
+  <title>pinda · 摄影作品集</title>
   <style>
     /* CSS Reset */
     *, *::before, *::after {
@@ -187,6 +187,61 @@
     form button:hover {
       background-color: #888;
     }
+
+    /* Projects grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .project-card {
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+    }
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .project-card h3 {
+      margin: 0.5rem;
+      font-size: 1.2rem;
+    }
+    .project-card p {
+      padding: 0 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+    /* Contact info list */
+    .contact-info {
+      list-style: none;
+      padding: 0;
+      margin: 1rem auto;
+      max-width: 600px;
+      text-align: left;
+    }
+    .contact-info li {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+    .contact-info a {
+      color: var(--color-accent);
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      border-top: 1px solid #e0e0e0;
+    }
+    body.dark-mode footer {
+      border-top: 1px solid #333;
+    }
     /* Dark/light toggle */
     .theme-toggle {
       position: fixed;
@@ -217,7 +272,7 @@
 </head>
 <body>
   <header>
-    <h1>你的名字</h1>
+    <h1>pinda</h1>
     <p>捕捉光影，讲述故事。</p>
   </header>
   <nav>
@@ -258,7 +313,23 @@
     <!-- Projects Section -->
     <section id="projects">
       <h2>项目介绍</h2>
-      <p>这里可以写一些你的摄影系列或者商业项目介绍，用来展示你的专业能力和独特视角。</p>
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="02.jpg" alt="城市之光">
+          <h3>城市之光</h3>
+          <p>探索繁忙都市中的光影，捕捉建筑与人群交织的瞬间。</p>
+        </div>
+        <div class="project-card">
+          <img src="01.jpg" alt="自然之诗">
+          <h3>自然之诗</h3>
+          <p>沉浸在自然风光的诗意之中，以镜头描绘山川与森林的呼吸。</p>
+        </div>
+        <div class="project-card">
+          <img src="03.jpg" alt="夜色轨迹">
+          <h3>夜色轨迹</h3>
+          <p>记录城市夜景中车流的轨迹与霓虹灯的节奏，呈现动感之美。</p>
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
@@ -273,7 +344,12 @@
     <!-- Contact Section -->
     <section id="contact">
       <h2>联系我</h2>
-      <p>如需合作或拍摄服务，请填写下方表单或发送邮件至 <a href="mailto:you@example.com">you@example.com</a>。</p>
+      <p>如需合作或拍摄服务，请填写下方表单或直接联系我：</p>
+      <ul class="contact-info">
+        <li>邮箱：<a href="mailto:you@example.com">you@example.com</a></li>
+        <li>微信：你的微信号</li>
+        <li>Instagram：@yourhandle</li>
+      </ul>
       <form action="mailto:you@example.com" method="post" enctype="text/plain">
         <input type="text" name="name" placeholder="姓名" required>
         <input type="email" name="email" placeholder="邮箱" required>
@@ -282,6 +358,11 @@
       </form>
     </section>
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 pinda. 版权所有。</p>
+  </footer>
 
   <!-- Lightbox Modal -->
   <div id="modal" class="modal">
