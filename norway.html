@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinda · 挪威系列</title>
+  <style>
+    /* CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    :root {
+      --color-bg: #ffffff;
+      --color-text: #333333;
+      --color-accent: #444444;
+    }
+    body.dark-mode {
+      --color-bg: #121212;
+      --color-text: #e0e0e0;
+      --color-accent: #aaaaaa;
+    }
+    header {
+      padding: 2rem 1rem;
+      text-align: center;
+      background: linear-gradient(135deg, #333, #666);
+      color: #fff;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    header p {
+      font-size: 1.1rem;
+    }
+    nav {
+      background-color: var(--color-bg);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      padding: 0.5rem;
+    }
+    nav li {
+      margin: 0 0.75rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: 600;
+    }
+    nav a:hover {
+      color: var(--color-accent);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Lightbox modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      margin: 5% auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      color: #fff;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      border-top: 1px solid #e0e0e0;
+    }
+    body.dark-mode footer {
+      border-top: 1px solid #333;
+    }
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+    }
+    .theme-toggle label {
+      margin-left: 0.5rem;
+      cursor: pointer;
+    }
+    .theme-toggle input {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+      nav li {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pinda · 挪威系列</h1>
+    <p>捕捉挪威的风光与光影。</p>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html#works">返回作品集</a></li>
+      <li><a href="index.html#projects">项目</a></li>
+      <li><a href="index.html#about">关于我</a></li>
+      <li><a href="index.html#contact">联系</a></li>
+    </ul>
+  </nav>
+  <main class="container">
+    <section>
+      <h2>挪威系列作品</h2>
+      <div class="grid">
+        <div class="item">
+          <img src="06.jpg" alt="挪威 1">
+        </div>
+        <!-- 如有更多挪威照片，可继续在此添加 -->
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2026 Pinda. 版权所有。</p>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img" alt="展示大图">
+  </div>
+  <!-- Theme Toggle -->
+  <div class="theme-toggle">
+    <input type="checkbox" id="toggle-theme">
+    <label for="toggle-theme">深色模式</label>
+  </div>
+
+  <script>
+    // Lightbox functionality for the Norway series page
+    const gridImages = document.querySelectorAll('.grid .item img');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const closeBtn = document.querySelector('.close');
+    gridImages.forEach(img => {
+      img.addEventListener('click', () => {
+        modal.style.display = 'block';
+        modalImg.src = img.src;
+      });
+    });
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    // Theme toggle functionality
+    const toggleTheme = document.getElementById('toggle-theme');
+    toggleTheme.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+</body>
+</html>
